@@ -1,0 +1,64 @@
+#services:
+#  database:                               # Première image Docker pour la base de données
+#    image: postgres                       # Image Postgres
+#    ports:
+#      - 5432:5432                          # Exécution sur le port 5432
+#    restart: always
+#    environment:
+#      POSTGRES_USER: docker
+#      POSTGRES_PASSWORD: docker
+#      POSTGRES_DB: exampledb
+#    volumes:
+#      - db-video-upload-service:/var/lib/postgresql/data
+#  adminer:                                # Deuxième image Docker pour l'administrateur
+#    image: adminer
+#    restart: always
+#    depends_on:
+#      - database
+#    ports:
+#      - 8080:8080                         # Exécution sur le port 8080
+
+#volumes:
+#  db-video-upload-service:
+
+
+
+
+
+version: '3.8'
+services:
+  database:                               # Première image Docker pour la base de données
+    container_name: database
+    image: postgres                       # Utilisation de l'image Postgres
+    ports:
+      - "5432:5432"                       # Exécution sur le port 5432
+    restart: always
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: exampledb
+    volumes:
+      - db-video-upload-service:/var/lib/postgresql/data
+
+  adminer:                                # Deuxième image Docker pour l'interface d'administration
+    container_name: adminer
+    image: adminer                       # Utilisation de l'image Adminer
+    restart: always
+    depends_on:
+      - database
+    ports:
+      - "8080:8080"                       # Exécution sur le port 8080
+
+  frontend:                               # Ajout du service frontend
+    container_name: frontend
+    build: ./frontend                     # Chemin vers le répertoire contenant le Dockerfile du frontend
+    ports:
+      - "3000:80"                         # Mapping du port 3000 de la machine hôte vers le port 80 du conteneur
+    depends_on:
+      - database                          # Le frontend dépend du service de base de données
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000 # Remplacez par l'URL de votre API si nécessaire
+
+volumes:
+  db-video-upload-service:
+

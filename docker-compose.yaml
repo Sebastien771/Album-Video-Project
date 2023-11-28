@@ -1,64 +1,40 @@
-#services:
-#  database:                               # Première image Docker pour la base de données
-#    image: postgres                       # Image Postgres
-#    ports:
-#      - 5432:5432                          # Exécution sur le port 5432
-#    restart: always
-#    environment:
-#      POSTGRES_USER: docker
-#      POSTGRES_PASSWORD: docker
-#      POSTGRES_DB: exampledb
-#    volumes:
-#      - db-video-upload-service:/var/lib/postgresql/data
-#  adminer:                                # Deuxième image Docker pour l'administrateur
-#    image: adminer
-#    restart: always
-#    depends_on:
-#      - database
-#    ports:
-#      - 8080:8080                         # Exécution sur le port 8080
-
-#volumes:
-#  db-video-upload-service:
-
-
-
-
-
 version: '3.8'
 services:
-  database:                               # Première image Docker pour la base de données
-    container_name: database
-    image: postgres                       # Utilisation de l'image Postgres
+  # Définition du service pour la base de données PostgreSQL
+  database:                               
+    container_name: database              # Nom du conteneur pour identification facile
+    image: postgres                       # Utilisation de l'image Docker officielle PostgreSQL
     ports:
-      - "5432:5432"                       # Exécution sur le port 5432
-    restart: always
-    environment:
-      POSTGRES_USER: docker
-      POSTGRES_PASSWORD: docker
-      POSTGRES_DB: exampledb
+      - "5432:5432"                       # Port 5432 mappé du conteneur vers l'hôte
+    restart: always                       # Politique de redémarrage automatique du conteneur
+    environment:                          # Variables d'environnement pour la configuration de PostgreSQL
+      POSTGRES_USER: docker               # Nom d'utilisateur pour la connexion à la base de données
+      POSTGRES_PASSWORD: docker           # Mot de passe pour l'utilisateur
+      POSTGRES_DB: exampledb              # Nom de la base de données à créer
     volumes:
-      - db-video-upload-service:/var/lib/postgresql/data
+      - db-video-upload-service:/var/lib/postgresql/data        # Persistance des données PostgreSQL
 
-  adminer:                                # Deuxième image Docker pour l'interface d'administration
-    container_name: adminer
-    image: adminer                       # Utilisation de l'image Adminer
-    restart: always
+  # Définition du service Adminer pour la gestion de la base de données via le web
+  adminer:                               
+    container_name: adminer               # Nom du conteneur
+    image: adminer                        # Utilisation de l'image Docker officielle Adminer
+    restart: always                       # Politique de redémarrage automatique du conteneur
     depends_on:
-      - database
+      - database                          # Dépendance envers le service database pour l'ordre de démarrage
     ports:
-      - "8080:8080"                       # Exécution sur le port 8080
+      - "8080:8080"                       # Port 8080 mappé du conteneur vers l'hôte
 
-  frontend:                               # Ajout du service frontend
-    container_name: frontend
-    build: ./frontend                     # Chemin vers le répertoire contenant le Dockerfile du frontend
+  # Définition du service pour le frontend de l'application
+  frontend:                               
+    container_name: frontend              # Nom du conteneur
+    build: ./frontend                     # Construction de l'image à partir du Dockerfile dans le répertoire frontend
     ports:
-      - "3000:80"                         # Mapping du port 3000 de la machine hôte vers le port 80 du conteneur
+      - "3000:80"                         # Mapping du port 3000 de l'hôte vers le port 80 dans le conteneur (nginx écoute sur le port 80)
     depends_on:
-      - database                          # Le frontend dépend du service de base de données
+      - database                          # Dépendance envers le service database pour l'ordre de démarrage
     environment:
-      - REACT_APP_API_URL=http://localhost:5000 # Remplacez par l'URL de votre API si nécessaire
+      - REACT_APP_API_URL=http://localhost:5000                 # Variable d'environnement pour l'URL de l'API utilisée par le frontend
 
+# Définition des volumes pour la persistance des données
 volumes:
-  db-video-upload-service:
-
+  db-video-upload-service:                # Volume nommé pour les données PostgreSQL

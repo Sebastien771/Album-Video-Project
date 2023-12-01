@@ -7,6 +7,7 @@ from pydantic import BaseModel          # Modélisation des données
 
 import uvicorn                                  # Serveur ASGI pour exécuter FastAPI
 from fastapi import FastAPI, UploadFile         # Framework web FastAPI et gestion des fichiers uploadés
+import os
 
 # Middleware pour la gestion des CORS (Cross-Origin Resource Sharing)
 from fastapi.middleware.cors import CORSMiddleware
@@ -34,12 +35,13 @@ async def check_status():
     return "Hello World!"
 
 # Route pour obtenir la liste des vidéos
+
 @app.get("/videos", response_model=List[VideoModel])
 async def get_videos():
     # Connexion à la base de données PostgreSQL
     conn = psycopg2.connect(
         database="exampledb", user="docker", password="docker", host="0.0.0.0"
-    )
+    )   
     cur = conn.cursor()
     # Exécution de la requête SQL pour obtenir toutes les vidéos
     cur.execute("SELECT * FROM video ORDER BY id DESC")

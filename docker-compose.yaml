@@ -35,6 +35,17 @@ services:
     environment:
       - REACT_APP_API_URL=http://localhost:5000                 # Variable d'environnement pour l'URL de l'API utilisée par le frontend
 
+  backend:
+    container_name: backend               # Nom du conteneur
+    build: ./backend                      # Construction de l'image à partir du Dockerfile dans le répertoire backend
+    ports:
+      - "8001:8001"                         # Mapping du port 8000 de l'hôte vers le port 8000 dans le conteneur
+    depends_on:
+      - database
+    environment:
+      - DATABASE_URL=postgresql://docker:docker@database:5432/exampledb
+      
+
 # Définition des volumes pour la persistance des données
 volumes:
   db-video-upload-service:                # Volume nommé pour les données PostgreSQL

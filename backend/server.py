@@ -1,6 +1,7 @@
 # Importation des modules nécessaires
 import boto3            # AWS SDK pour Python
 import psycopg2         # Connecteur pour la base de données PostgreSQL
+import os
 
 from typing import List                 # Typage pour les listes
 from pydantic import BaseModel          # Modélisation des données
@@ -39,9 +40,17 @@ async def check_status():
 @app.get("/videos", response_model=List[VideoModel])
 async def get_videos():
     # Connexion à la base de données PostgreSQL
+    #conn = psycopg2.connect(
+    #    database="exampledb", user="docker", password="docker", host="database", port="5432" #database="exampledb", user="docker", password="docker", host="0.0.0.0"
+    #)   
+
     conn = psycopg2.connect(
-        database="exampledb", user="docker", password="docker", host="database", port="5432" #database="exampledb", user="docker", password="docker", host="0.0.0.0"
-    )   
+    database=os.getenv("POSTGRES_DB", "exampledb"),
+    user=os.getenv("POSTGRES_USER", "docker"),
+    password=os.getenv("POSTGRES_PASSWORD", "docker"),
+    host=os.getenv("DATABASE_HOST", "database"),
+    port=os.getenv("DATABASE_PORT", "5432")
+    )
 
     cur = conn.cursor()
     # Exécution de la requête SQL pour obtenir toutes les vidéos

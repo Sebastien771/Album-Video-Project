@@ -39,11 +39,15 @@ services:
     container_name: backend               # Nom du conteneur
     build: ./backend                      # Construction de l'image à partir du Dockerfile dans le répertoire backend
     ports:
-      - "8001:8001"                         # Mapping du port 8000 de l'hôte vers le port 8000 dans le conteneur
+      - "8001:8001"                       # Mapping du port 8000 de l'hôte vers le port 8000 dans le conteneur
     depends_on:
       - database
     environment:
-      - DATABASE_URL=postgresql://docker:docker@database:5432/exampledb
+      - POSTGRES_DB=exampledb               #DATABASE_URL=postgresql://docker:docker@database:5432/exampledb
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+      - DATABASE_HOST=database
+      - DATABASE_PORT=5432
       
 
 # Définition des volumes pour la persistance des données

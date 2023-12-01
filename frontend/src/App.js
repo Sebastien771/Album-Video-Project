@@ -18,7 +18,8 @@ function App() {
     // useEffect pour charger les données des vidéos depuis le backend au chargement du composant
     useEffect(() => {
         // Appel à l'API pour obtenir les vidéos
-        fetch("http://127.0.0.1:8000/videos")
+        console.log('API URL:', process.env.REACT_APP_API_URL);
+        fetch(`${process.env.REACT_APP_API_URL}/videos`)
             .then((response) => response.json())        // Conversion de la réponse en JSON
             .then((data) => {
                 setAllVideos(data);                     // Mise à jour de l'état avec les données des vidéos

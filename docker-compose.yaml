@@ -33,7 +33,7 @@ services:
     depends_on:
       - database                          # Dépendance envers le service database pour l'ordre de démarrage
     environment:
-      - REACT_APP_API_URL=http://localhost:5000                 # Variable d'environnement pour l'URL de l'API utilisée par le frontend
+      - REACT_APP_API_URL=http://backend:8001             # Variable d'environnement pour l'URL de l'API utilisée par le frontend
 
   backend:
     container_name: backend               # Nom du conteneur

@@ -123,7 +123,29 @@ En effet, Amazon AWS S3 est utilisé dans l'application Album Vidéo pour le sto
 
 ## Axes d'amélioration
 <div align="justify">
-Fina
+Finalement, certains points de l'application "Album Vidéos" pourraient être améliorés, notamment :
+</div> <br/>
+ 
+- <div align="justify"> la mise en place d'un service permettant que l'utilisateur télécharge directement une ou plusieurs vidéos à partir du frontend et que celles-ci soient directement stockés dans la base de données PostgreSQL </div> <br/>
+  
+- <div align="justify"> la mise en place d'un système d'authentification du frontend afin de permettre une meilleure sécurité des données </div> <br/>
+
+- <div align="justify"> une interface graphique plus développée </div> <br/>
+
+## Références
+- <div align="justify"> Python : https://docs.python.org/3/ </div> <br/>
+- <div align="justify"> JavaScript : https://devdocs.io/javascript/ </div> <br/>
+- <div align="justify"> node.js : https://nodejs.org/en/docs </div> <br/>
+- <div align="justify"> npm : https://docs.npmjs.com/ </div> <br/>
+- <div align="justify"> SQL : https://dev.mysql.com/doc/ </div> <br/>
+- <div align="justify"> Nginx : https://nginx.org/en/docs/ </div> <br/>
+- <div align="justify"> Docker : https://docs.docker.com/reference/ </div> <br/>
+- <div align="justify"> PostgreSQL : https://www.postgresql.org/docs/ </div> <br/>
+- <div align="justify"> Amazon AWS S3 : https://docs.aws.amazon.com/s3/ </div> <br/>
+
+
+
+
 
 
 

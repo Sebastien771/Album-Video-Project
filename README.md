@@ -48,6 +48,18 @@ Si vous ne voyez aucune vidéo, ne vous inquietez ! Vous pouvez charger des vid�
 <p align="center"> <img width="500" alt="Capture d’écran 2023-12-02 à 00 56 06" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/56409794-5707-4372-9552-a8ad234d114c"> </p>
 
 - Dans la section "SQL Command", exécutez la commande suivante :
+<p align="center">
+INSERT INTO video (id, video_title, video_url) VALUES <br/>
+(1,'video1.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video1.mp4'), <br/>
+(2,'video2.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video2.mp4'), <br/>
+(3,'video3.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video3.mp4'), <br/>
+(4,'video4.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video4.mp4'), <br/>
+(5,'video5.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video5.mp4'), <br/>
+(6,'video6.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video6.mp4'), <br/>
+(7,'video7.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video7.mp4'), <br/>
+(8,'video8.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video8.mp4'), <br/>
+(9,'video9.mp4','https://application-full-stack-storage.s3.eu-west-3.amazonaws.com/video9.mp4') <br/>
+</p>
   
 <p align="center"> <img width="686" alt="SQL_INSERT_INTO" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/7254a0f6-40bc-4ad4-b692-6f593c47b1ff"> </p>
 

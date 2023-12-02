@@ -72,9 +72,16 @@ Plus précisement, le fichier docker-compose.yaml agit comme chef d'orchestre po
 
 <div align="justify">
 Par ailleurs, les Dockerfile pour le frontend et le backend dictent comment les images Docker de chaque service doivent être construites. Dans le Dockerfile du backend, à partir d'une image de base Python, il crée un environnement de travail, installe les dépendances listées dans "requirements.txt" et définit comment l'application FastAPI doit être exécutée via Uvicorn. Il expose également le port 8001, correspondant au port sur lequel le service backend est à l'écoute. Pour le frontend, le Dockerfile commence par construire l'application React avec une image Node.js, en installant les dépendances et en exécutant le script de construction. La seconde étape utilise nginx pour servir le contenu statique de l'application, copiant les fichiers construits dans le répertoire de nginx et exposant le port 80. Ce processus assure que l'application frontend est empaquetée avec tout le nécessaire pour fonctionner en tant que serveur web léger, rapide et efficace.
- </div>
+</div>
  
 <br/>
+
+<p align="center"> <img width="638" alt="Capture d’écran 2023-12-02 à 21 29 57" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/73ef9800-2444-4e74-8a86-a58578d96e02"> </p>
+
+<br/>
+
+<p align="center"> <img width="670" alt="Capture d’écran 2023-12-02 à 21 30 09" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/32aafea6-6d3c-4d2f-b6b2-a5b77ddc0c4b"> </p>
+
 
 ## Frontend
 <div align="justify">
@@ -97,6 +104,8 @@ En particulier, nous avons les fichiers suivants :
   
 - <div align="justify"> "package.json" et "package-lock.json" sont les fichiers définissant les dépendances de projet npm et verrouillent leurs versions pour assurer la cohérence entre les environnements de développement. </div> <br/>
 
+<p align="center"> <img width="170" alt="Capture d’écran 2023-12-02 à 21 36 39" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/b56f0e72-3508-4913-b8aa-0dbeb38e7d56"> </p>
+
 ## Backend
 <div align="justify">
 Le backend de l'application Album Vidéo joue le rôle essentiel de moteur de traitement des données. Il s'agit d'une API développée avec FastAPI en Python, qui interagit avec une base de données PostgreSQL pour gérer les informations relatives aux vidéos. Le backend est responsable de la réception des requêtes HTTP du frontend, de l'exécution des opérations de base de données (comme récupérer les métadonnées des vidéos), et de l'envoi des réponses correspondantes. Il sert également de passerelle pour les interactions avec le stockage AWS S3, permettant ainsi le téléchargement et la récupération des vidéos. Avec ses capacités asynchrones, FastAPI offre des performances élevées, ce qui est crucial pour une application réactive qui gère les contenus multimédias.
@@ -112,14 +121,22 @@ En particulier, nous avons les fichiers suivants :
   
 - <div align="justify"> "requirements.txt" liste toutes les dépendances Python nécessaires pour le backend, telles que FastAPI, Uvicorn, psycopg2-binary pour la connexion PostgreSQL, et boto3 pour la communication avec AWS S3. </div> <br/>
 
+<p align="center"> <img width="158" alt="Capture d’écran 2023-12-02 à 21 33 54" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/2817a3a9-4436-43c5-8b5c-e7ec3bf64550"> </p>
+
 ## Bases de données
 <div align="justify">
-La base de données PostgreSQL est un élément central de l'application Album Vidéo, stockant les informations cruciales telles que les détails des vidéos. Dans cette configuration, PostgreSQL sert de base de données relationnelle robuste et performante. Elle est configurée pour être accessible via le port 5432 et peut être gérée par le biais d'Adminer, un outil d'administration de base de données basé sur le Web. Pour accéder à l'interface d'Adminer, les utilisateurs peuvent naviguer vers "http://localhost:8080/" dans leur navigateur Internet. Une fois connectés, ils peuvent visualiser, modifier, ajouter ou supprimer des données dans la base de données PostgreSQL. Cette interface rend la gestion de la base de données pratique et accessible, même pour ceux qui ne sont pas familiers avec les lignes de commande SQL. En particulier, les éléments de la colonne "video_url" mènent aux vidéos stockées dans Amazon AWS. </div>
- 
+La base de données PostgreSQL est un élément central de l'application Album Vidéo, stockant les informations cruciales telles que les détails des vidéos. Dans cette configuration, PostgreSQL sert de base de données relationnelle robuste et performante. Elle est configurée pour être accessible via le port 5432 et peut être gérée par le biais d'Adminer, un outil d'administration de base de données basé sur le Web. Pour accéder à l'interface d'Adminer, les utilisateurs peuvent naviguer vers "http://localhost:8080/" dans leur navigateur Internet. Une fois connectés, ils peuvent visualiser, modifier, ajouter ou supprimer des données dans la base de données PostgreSQL. Cette interface rend la gestion de la base de données pratique et accessible, même pour ceux qui ne sont pas familiers avec les lignes de commande SQL. En particulier, les éléments de la colonne "video_url" mènent aux vidéos stockées dans Amazon AWS. </div> <br/>
+
+<p align="center"> <img width="740" alt="Capture d’écran 2023-12-02 à 21 38 13" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/8220bdc7-1ec2-4ff5-82cd-ce7c055b053c"> </p>
+
 <br/>
 
 <div align="justify">
-En effet, Amazon AWS S3 est utilisé dans l'application Album Vidéo pour le stockage des fichiers vidéo eux-mêmes. S3 est un service de stockage d'objets offert par Amazon Web Services, connu pour sa durabilité, sa disponibilité et sa facilité d'utilisation. Dans le contexte de Album Vidéo, S3 sert de dépôt pour les fichiers vidéo, où chaque vidéo est stockée comme un objet distinct. L'utilisation d'AWS S3 offre plusieurs avantages, comme la scalabilité, la sécurité des données, et l'accès global. </div>
+En effet, Amazon AWS S3 est utilisé dans l'application Album Vidéo pour le stockage des fichiers vidéo eux-mêmes. S3 est un service de stockage d'objets offert par Amazon Web Services, connu pour sa durabilité, sa disponibilité et sa facilité d'utilisation. Dans le contexte de Album Vidéo, S3 sert de dépôt pour les fichiers vidéo, où chaque vidéo est stockée comme un objet distinct. L'utilisation d'AWS S3 offre plusieurs avantages, comme la scalabilité, la sécurité des données, et l'accès global. </div> <br/>
+
+<p align="center"> <img width="1060" alt="Capture d’écran 2023-12-02 à 19 55 24" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/0c4a706b-7193-4fd1-a1b1-1fe039a86c77"> </p>
+
+<p align="center"> <img width="1038" alt="Capture d’écran 2023-11-28 à 22 03 46" src="https://github.com/Sebastien771/Album-Video-Project/assets/124042574/02599956-3c81-4873-a865-c5997eb4ad60"> </p>
 
 ## Axes d'amélioration
 <div align="justify">

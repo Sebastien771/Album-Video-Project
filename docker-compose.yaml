@@ -43,7 +43,7 @@ services:
     depends_on:
       - database
     environment:
-      - POSTGRES_DB=exampledb               #DATABASE_URL=postgresql://docker:docker@database:5432/exampledb
+      - POSTGRES_DB=exampledb              # DATABASE_URL=postgresql://docker:docker@database:5432/exampledb
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
       - DATABASE_HOST=database
@@ -52,4 +52,4 @@ services:
 
 # Définition des volumes pour la persistance des données
 volumes:
-  db-video-upload-service:                # Volume nommé pour les données PostgreSQL
+  db-video-upload-service:                  # Volume nommé pour les données PostgreSQL
